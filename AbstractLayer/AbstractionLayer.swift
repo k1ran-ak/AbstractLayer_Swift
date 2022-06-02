@@ -106,7 +106,7 @@ public class AbstractionLayer : UIView {
         
         
         let subLabel = UILabel()
-        subLabel.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 2)
+        subLabel.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
         subLabel.text = view1State == .firstViewExpanded ? view1SubTitleTextEx : view1SubTitleTextCl
         subLabel.numberOfLines = 0
         subLabel.font = UIFont.systemFont(ofSize: subtitltFontSize)
@@ -128,7 +128,7 @@ public class AbstractionLayer : UIView {
         view.addSubview(label)
         
         let subLabel = UILabel()
-        subLabel.frame = CGRect(x: xValue, y: xValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 2)
+        subLabel.frame = CGRect(x: xValue, y: xValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
         subLabel.text = view2State == .secondViewExpanded ? view2SubTitleTextEx : view2SubTitleTextCl
         subLabel.numberOfLines = 0
         subLabel.font = UIFont.systemFont(ofSize: subtitltFontSize)
@@ -151,7 +151,7 @@ public class AbstractionLayer : UIView {
         view.addSubview(label)
         
         let subLabel = UILabel()
-        subLabel.frame = CGRect(x: xValue , y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 2)
+        subLabel.frame = CGRect(x: xValue , y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
         subLabel.text = view3State == .thirdViewExpanded ? view3SubTitleTextEx : view3SubTitleTextCl
         subLabel.numberOfLines = 0
         subLabel.font = UIFont.systemFont(ofSize: subtitltFontSize)
@@ -479,7 +479,7 @@ public class AbstractionLayer : UIView {
         
         
         let subLabel1 = UILabel()
-        subLabel1.frame = CGRect(x: xValue, y: yValue + height + spacing , width: self.frame.width - xValue * 2, height: height * 2)
+        subLabel1.frame = CGRect(x: xValue, y: yValue + height + spacing , width: self.frame.width - xValue * 2, height: height * 3)
         subLabel1.text = view1State == .firstViewExpanded ? view1SubTitleTextEx : view1SubTitleTextCl
         subLabel1.numberOfLines = 0
         subLabel1.font = UIFont.systemFont(ofSize: subtitltFontSize)
@@ -496,7 +496,7 @@ public class AbstractionLayer : UIView {
         self.view2.addSubview(label2)
         
         let subLabel2 = UILabel()
-        subLabel2.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 2)
+        subLabel2.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
         subLabel2.text = view2State == .secondViewExpanded ? view2SubTitleTextEx : view2SubTitleTextCl
         subLabel2.numberOfLines = 0
         subLabel2.font = UIFont.systemFont(ofSize: subtitltFontSize)
@@ -514,7 +514,7 @@ public class AbstractionLayer : UIView {
         self.view3.addSubview(label3)
         
         let subLabel3 = UILabel()
-        subLabel3.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 2)
+        subLabel3.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 4)
         subLabel3.text = view3State == .thirdViewExpanded ?  view3SubTitleTextEx : view3SubTitleTextCl
         subLabel3.numberOfLines = 0
         subLabel3.font = UIFont.systemFont(ofSize: subtitltFontSize)
