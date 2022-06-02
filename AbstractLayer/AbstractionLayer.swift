@@ -49,22 +49,22 @@ public class AbstractionLayer : UIView {
     public  var view1State : States = .firstViewExpanded
     public  var view2State : States = .secondViewCollapsed
     public  var view3State : States = .thirdViewCollapsed
-    public var view1TitleTextEx = ""
-    public var view1SubTitleTextEx = ""
-    public var view2TitleTextEx = ""
-    public var view2SubTitleTextEx = ""
-    public var view3TitleTextEx = ""
-    public var view3SubTitleTextEx = ""
-    public var bottomViewTextEx = ""
-    public var view1TitleTextCl = ""
-    public var view1SubTitleTextCl = ""
-    public var view2TitleTextCl = ""
-    public var view2SubTitleTextCl = ""
-    public var view3TitleTextCl = ""
-    public var view3SubTitleTextCl = ""
-    public var bottomViewFirstStateText = ""
-    public  var bottomViewSecondStateText = ""
-    public var bottomViewThirdStateText = ""
+    var view1TitleTextEx = ""
+    var view1SubTitleTextEx = ""
+    var view2TitleTextEx = ""
+    var view2SubTitleTextEx = ""
+    var view3TitleTextEx = ""
+    var view3SubTitleTextEx = ""
+    var bottomViewTextEx = ""
+    var view1TitleTextCl = ""
+    var view1SubTitleTextCl = ""
+    var view2TitleTextCl = ""
+    var view2SubTitleTextCl = ""
+    var view3TitleTextCl = ""
+    var view3SubTitleTextCl = ""
+    var bottomViewFirstStateText = ""
+    var bottomViewSecondStateText = ""
+    var bottomViewThirdStateText = ""
     public var xValue : CGFloat = 20
     public var yValue : CGFloat = 20
     public var spacing : CGFloat = 10
@@ -203,7 +203,7 @@ public class AbstractionLayer : UIView {
     //MARK: - Class functions
     
     public func addSubViews() {
-        if view1TitleTextEx.isEmpty {
+        if view1TitleTextEx.isEmpty || view2TitleTextEx.isEmpty {
             self.setLabelValuesWhenExpanded(view1Title: nil, view1SubTitle: nil, view2Title: nil, view2Subtitle: nil, view3Title: nil, view3SubTitle: nil)
         }
         if view1TitleTextCl.isEmpty {
