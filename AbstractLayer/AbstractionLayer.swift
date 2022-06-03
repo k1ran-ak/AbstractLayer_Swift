@@ -36,6 +36,7 @@ public enum States : String {
 ///  3. call addSubViews() func
 ///  4. call addGestures() func
 ///  5. add AbstractionLayer view as subview
+///  6. you can add any other subview and update it with refering the subview's state
 ///
 ///  Note: Please do any customisation before calling addSubViews() func
 ///  Side Note : Looks better with dark mode enabled
@@ -49,6 +50,7 @@ public class AbstractionLayer : UIView {
     public  var view1State : States = .firstViewExpanded
     public  var view2State : States = .secondViewCollapsed
     public  var view3State : States = .thirdViewCollapsed
+    /// - Warning: Use set label values method to update label text
     var view1TitleTextEx = ""
     var view1SubTitleTextEx = ""
     var view2TitleTextEx = ""
@@ -96,69 +98,93 @@ public class AbstractionLayer : UIView {
     public lazy var view1 : UIView = {
         let view = UIView()
         view.backgroundColor = subViewsBgColor
+       
+        
+        view.addSubview(titleLabelForView1)
+        view.addSubview(subTitleLabelForView1)
+       
+        return view
+    }()
+    
+    public lazy var titleLabelForView1 : UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: xValue, y: yValue, width: self.frame.width - xValue*2 , height: height)
         label.text = view1State == .firstViewExpanded ? view1TitleTextEx : view1TitleTextCl
         label.font = UIFont.systemFont(ofSize: titleFontSize)
         label.textColor = titleLabelColor
         label.textAlignment = .left
-        view.addSubview(label)
-        
-        
+        return label
+    }()
+    
+    public lazy var subTitleLabelForView1 : UILabel = {
         let subLabel = UILabel()
         subLabel.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
         subLabel.text = view1State == .firstViewExpanded ? view1SubTitleTextEx : view1SubTitleTextCl
         subLabel.numberOfLines = 0
         subLabel.font = UIFont.systemFont(ofSize: subtitltFontSize)
         subLabel.textColor = subtitleLabelColor
-        subLabel.textAlignment = .left
-        view.addSubview(subLabel)
-        return view
+       return subLabel
     }()
+    
     
     public lazy var view2 : UIView = {
         let view = UIView()
         view.backgroundColor = subViewsBgColor
+        
+        view.addSubview(titleLabelForView2)
+        
+       
+        view.addSubview(subtitleLabelForView2)
+        
+        return view
+    }()
+    
+    public lazy var titleLabelForView2 : UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: xValue, y: yValue, width: self.frame.width - xValue * 2 , height: height)
         label.text = view2State == .secondViewExpanded ? view2TitleTextEx : view2TitleTextCl
         label.font = UIFont.systemFont(ofSize: titleFontSize)
         label.textColor = titleLabelColor
         label.textAlignment = .left
-        view.addSubview(label)
-        
+        return label
+    }()
+    
+    public lazy var subtitleLabelForView2 : UILabel = {
         let subLabel = UILabel()
         subLabel.frame = CGRect(x: xValue, y: xValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
         subLabel.text = view2State == .secondViewExpanded ? view2SubTitleTextEx : view2SubTitleTextCl
         subLabel.numberOfLines = 0
         subLabel.font = UIFont.systemFont(ofSize: subtitltFontSize)
         subLabel.textColor = subtitleLabelColor
-        subLabel.textAlignment = .left
-        view.addSubview(subLabel)
-        
-        return view
+        return subLabel
     }()
     
     public lazy var view3 : UIView = {
         let view = UIView()
         view.backgroundColor = subViewsBgColor
+        view.addSubview(titleLabelForView3)
+        view.addSubview(subtitleLabelForView3)
+        return view
+    }()
+    
+    public lazy var titleLabelForView3 : UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: xValue , y: yValue, width: self.frame.width - xValue * 2 , height: height)
         label.text = view3State == .thirdViewExpanded ? view3TitleTextEx : view3TitleTextCl
         label.font = UIFont.systemFont(ofSize: titleFontSize)
         label.textColor = titleLabelColor
         label.textAlignment = .left
-        view.addSubview(label)
-        
+        return label
+    }()
+    
+    public lazy var subtitleLabelForView3 : UILabel = {
         let subLabel = UILabel()
-        subLabel.frame = CGRect(x: xValue , y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
+        subLabel.frame = CGRect(x: xValue , y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 4)
         subLabel.text = view3State == .thirdViewExpanded ? view3SubTitleTextEx : view3SubTitleTextCl
         subLabel.numberOfLines = 0
         subLabel.font = UIFont.systemFont(ofSize: subtitltFontSize)
         subLabel.textColor = subtitleLabelColor
-        subLabel.textAlignment = .left
-        view.addSubview(subLabel)
-        return view
+        return subLabel
     }()
     
     private lazy var stack: UIStackView = {
@@ -175,15 +201,18 @@ public class AbstractionLayer : UIView {
         let view = UIView()
         view.frame = CGRect(x: self.frame.minX, y: self.frame.maxY - (subviewCollapseStateHeight/2+spacing), width: self.frame.width, height: subviewCollapseStateHeight/2+spacing)
         view.backgroundColor = bottomViewBgColor
+        view.addSubview(titleLabelForBottomView)
+        return view
+    }()
+    
+    public lazy var titleLabelForBottomView : UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: xValue, y: yValue, width: self.frame.width - xValue*2 , height: height)
         label.text = bottomViewFirstStateText.isEmpty ? "Proceed to EMI Selection" : bottomViewFirstStateText
         label.font = UIFont.systemFont(ofSize: titleFontSize)
         label.textColor = titleLabelColor
         label.textAlignment = .center
-        view.addSubview(label)
-        view.bringSubviewToFront(label)
-        return view
+        return label
     }()
     
     public lazy var topLayer : UIView = {
@@ -203,13 +232,13 @@ public class AbstractionLayer : UIView {
     //MARK: - Class functions
     
     public func addSubViews() {
-        if view1TitleTextEx.isEmpty || view2TitleTextEx.isEmpty {
+        if view1TitleTextEx.isEmpty {
             self.setLabelValuesWhenExpanded(view1Title: nil, view1SubTitle: nil, view2Title: nil, view2Subtitle: nil, view3Title: nil, view3SubTitle: nil)
         }
         if view1TitleTextCl.isEmpty {
             self.setLabelValuesWhenCollapsed(view1Title: nil, view1SubTitle: nil, view2Title: nil, view2Subtitle: nil, view3Title: nil, view3SubTitle: nil)
         }
-        if bottomViewFirstStateText.isEmpty || bottomViewSecondStateText.isEmpty || bottomViewThirdStateText.isEmpty {
+        if bottomViewFirstStateText.isEmpty {
             self.setBottomViewText(firstStateText: nil, secondStateText: nil, thirdStateText: nil)
         }
         
@@ -452,84 +481,30 @@ public class AbstractionLayer : UIView {
         }
         
     }
-    
-    private func updateSubViews() {
-        self.view1.subviews.forEach({ view in
-            view.removeFromSuperview()
-        })
-        self.view2.subviews.forEach({ view in
-            view.removeFromSuperview()
-        })
-        self.view3.subviews.forEach({ view in
-            view.removeFromSuperview()
-        })
-        
-        self.bottomView.subviews.forEach({ view in
-            view.removeFromSuperview()
-        })
-        
-        let label1 = UILabel()
-        label1.frame = CGRect(x: xValue, y: yValue, width: self.frame.width - xValue * 2 , height: height)
-        //        label1.text = view1State == .firstViewExpanded ? "hi Kiran, how much do you need?" : "credit amount"
+    /// - Warning : This func will update the subviews by checking that state of the subview.
+    public func updateSubViews() {
+        let label1 = titleLabelForView1
         label1.text = view1State == .firstViewExpanded ? view1TitleTextEx : view1TitleTextCl
-        label1.font = UIFont.systemFont(ofSize: titleFontSize)
-        label1.textColor = titleLabelColor
-        label1.textAlignment = .left
-        self.view1.addSubview(label1)
-        
-        
-        let subLabel1 = UILabel()
-        subLabel1.frame = CGRect(x: xValue, y: yValue + height + spacing , width: self.frame.width - xValue * 2, height: height * 3)
+
+        let subLabel1 = subTitleLabelForView1
         subLabel1.text = view1State == .firstViewExpanded ? view1SubTitleTextEx : view1SubTitleTextCl
-        subLabel1.numberOfLines = 0
-        subLabel1.font = UIFont.systemFont(ofSize: subtitltFontSize)
-        subLabel1.textColor = subtitleLabelColor
-        subLabel1.textAlignment = .left
-        self.view1.addSubview(subLabel1)
         
-        let label2 = UILabel()
-        label2.frame = CGRect(x: xValue, y: yValue, width: self.frame.width - xValue * 2 , height: height)
+        let label2 = titleLabelForView2
         label2.text = view2State == .secondViewExpanded ? view2TitleTextEx : view2TitleTextCl
-        label2.font = UIFont.systemFont(ofSize: titleFontSize)
-        label2.textColor = titleLabelColor
-        label2.textAlignment = .left
-        self.view2.addSubview(label2)
         
-        let subLabel2 = UILabel()
-        subLabel2.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 3)
+        let subLabel2 = subtitleLabelForView2
         subLabel2.text = view2State == .secondViewExpanded ? view2SubTitleTextEx : view2SubTitleTextCl
-        subLabel2.numberOfLines = 0
-        subLabel2.font = UIFont.systemFont(ofSize: subtitltFontSize)
-        subLabel2.textColor = subtitleLabelColor
-        subLabel2.textAlignment = .left
-        self.view2.addSubview(subLabel2)
-        
-        
-        let label3 = UILabel()
-        label3.frame = CGRect(x: xValue, y: yValue, width: self.frame.width - xValue * 2 , height: height)
+
+        let label3 = titleLabelForView3
         label3.text = view3State == .thirdViewExpanded ? view3TitleTextEx : view3SubTitleTextCl
-        label3.font = UIFont.systemFont(ofSize: titleFontSize)
-        label3.textColor = titleLabelColor
-        label3.textAlignment = .left
-        self.view3.addSubview(label3)
-        
-        let subLabel3 = UILabel()
-        subLabel3.frame = CGRect(x: xValue, y: yValue + height + spacing, width: self.frame.width - xValue * 2, height: height * 4)
+
+        let subLabel3 = subtitleLabelForView3
+
         subLabel3.text = view3State == .thirdViewExpanded ?  view3SubTitleTextEx : view3SubTitleTextCl
-        subLabel3.numberOfLines = 0
-        subLabel3.font = UIFont.systemFont(ofSize: subtitltFontSize)
-        subLabel3.textColor = subtitleLabelColor
-        subLabel3.textAlignment = .left
-        self.view3.addSubview(subLabel3)
-        
-        
-        let label = UILabel()
-        label.frame = CGRect(x: xValue, y: yValue, width: self.frame.width - xValue * 2 , height: height)
+
+        let label = titleLabelForBottomView
+
         label.text = handleBottomBarLabelText(firstStateText: bottomViewFirstStateText, secondStateText: bottomViewSecondStateText, thirdStateText: bottomViewThirdStateText)
-        label.font = UIFont.systemFont(ofSize: titleFontSize)
-        label.textColor = titleLabelColor
-        label.textAlignment = .center
-        bottomView.addSubview(label)
         
         if stateNotHandled {
             let label = UILabel()
@@ -544,7 +519,7 @@ public class AbstractionLayer : UIView {
     }
     
 }
-/// Just added a custom function to convert hex string to UIColor
+/// Just added a custom init to convert hex string to UIColor
 extension UIColor {
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
         let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
